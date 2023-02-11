@@ -1,0 +1,44 @@
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--bs-table-color);
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
+.table > :not(caption) > * > * {
+padding: 0.5rem 0.5rem;
+background-color: var(--bs-table-bg);
+border-bottom-width: var(--bs-border-width);
+box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.table > tbody {
+vertical-align: inherit;
+text-align: center;
+}
+.table > thead {
+vertical-align: bottom;
+}
+
+.wpd-card {
+    min-width: 100% !important;
+    max-width: 100% !important;
+}
+
+.wpd-card-half {
+    min-width: 49% !important;
+    max-width: 49% !important;
+    display: inline-block;
+}
+
+.wpd-notice-card {
+    margin-left: 180px !important;
+    padding-left: 20px !important;
+}
+
+.wpd-notice-card.success {
+    border-left: green 5px solid;
+}
+
+.wpd-notice-card.wrong {
+    border-left: darkred 5px solid;
+}
