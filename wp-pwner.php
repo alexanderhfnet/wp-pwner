@@ -21,7 +21,7 @@ function wp_pwner_init_style() {
 }
 
 function wp_pwner_menu() {
-    $hook_suffix = add_menu_page('WP Pwner', 'WP Pwner', 'manage_options', 'wp-downloader', 'render_wp_pwner_page');
+    $hook_suffix = add_menu_page('WP Pwner', 'WP Pwner', 'manage_options', 'wp-pwner', 'render_wp_pwner_page');
 }
 
 function wp_pwner_check_for_download() {
